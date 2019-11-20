@@ -1,0 +1,56 @@
+header.main-header {
+    width: 100%;
+    display: flex;
+    background: var(--blue);
+    padding: 2em 0;
+}
+h1 > img {
+    max-height: 40px;
+}
+.title-container {
+    padding-left: 10px;
+}
+header h1 {
+    display: inline-flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+.main-header-content-container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    max-width: 1280px;
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+.search-bar-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.coin-name {
+    font-family: MonBold;
+    color: #FFF;
+}
+.miner-title {
+    color: #fbd206;
+}
+.coin-name {
+    font-size: 1.7em;
+}
+.miner-title {
+    font-size: 1.4em;
+}
+@media (max-width: 768px) {
+    .main-header-content-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .search-bar-container {
+        width: 90%;
+        padding-top: 1em;
+    }
+}

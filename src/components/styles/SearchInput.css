@@ -1,0 +1,13 @@
+.input-container {
+    flex: 1;
+    border: none;
+    box-shadow: none;
+}
+.input-container > input {
+    width: 100%;
+    border-radius: 3px;
+    border: none;
+    box-shadow: none;
+    padding: 0.5em 1.2em;
+    outline: transparent;
+}
