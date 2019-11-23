@@ -1,0 +1,83 @@
+.single-block-container {
+    display: flex;
+    width: 100%;
+}
+.single-block-container {
+    padding: 0.5em 0
+}
+.block-box-identifier {
+    width: 3em;
+    height: 3em;
+    min-width: 50px;
+    min-height: 50px;
+    background: #e5e5e5;
+    font-family: MonBold;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--blue);
+}
+.block-mined-date {
+    font-size: 0.6em;
+}
+.block-index {
+    font-size: 0.9em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.block-index a {
+    font-size: 0.9em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: inline-block;
+}
+.index-container {
+    padding-left: 10px;
+    overflow: hidden;
+}
+.single-block-container > .block-column:first-child,  .single-block-container > .block-column:last-child{
+    width: 25%;
+}
+.single-block-container > .block-column:first-child {
+    min-width: 170px;
+}
+.single-block-container > .block-column:last-child {
+    text-align: center;
+    min-width: 120px;
+    overflow: hidden;
+}
+.single-block-container > .block-column:last-child > div {
+    width: 100%;
+}
+.single-block-container > .block-column:nth-child(2) {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    overflow: hidden;
+}
+.block-column-content{
+    font-size: 0.8em;
+    white-space: nowrap;
+}
+.block-column-content a {
+    font-size: 1em;
+}
+.block-column {
+    padding: 0 1em;
+    display: flex;  
+    align-items: center;  
+}
+.block-column-content  {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.block-column-content > a {
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+}
