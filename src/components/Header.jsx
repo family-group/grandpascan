@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 // importing styles
 import './styles/Header.css';
 //importing images
@@ -8,12 +9,21 @@ import SearchInput from './SearchInput';
 // importing utils
 
 class Header extends React.Component {
+    constructor() {
+        super();
+        this.goHome = this.goHome.bind(this);
+    }
+    goHome() {
+        if (this.props.location.pathname !== '/') {
+            this.props.history.push('/');
+        }
+    }
     render() {
         return (
             <header className="main-header">
                 <div className="main-header-content-container">
                     <div className="logo-container">
-                        <h1>
+                        <h1 onClick={this.goHome}>
                             <img src={logo} alt="Grandpa coin Logo" />
                             <span className="title-container">
                                 <span className="coin-name">GrandpaCoin </span>
@@ -29,4 +39,4 @@ class Header extends React.Component {
         );
     }
 }
-export default Header;
+export default withRouter(Header);

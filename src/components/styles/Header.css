@@ -3,6 +3,8 @@ header.main-header {
     display: flex;
     background: var(--blue);
     padding: 2em 0;
+    position: sticky;
+    top: 0;
 }
 h1 > img {
     max-height: 40px;
@@ -13,7 +15,8 @@ h1 > img {
 header h1 {
     display: inline-flex;
     align-items: center;
-    /* justify-content: center; */
+    cursor: pointer;
+    user-select: none;
 }
 .main-header-content-container {
     width: 90%;
