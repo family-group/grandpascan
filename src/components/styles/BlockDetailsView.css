@@ -1,0 +1,34 @@
+.show-block-main-content-container {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 900px;
+}
+.show-block-main-content-container .block-hash {
+    color: var(--black);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: #FFF;
+    padding-bottom: 1em;
+}
+.block-info-container {
+    padding: 1.2em 1.5em;
+    overflow: hidden;
+}
+.block-info-row {
+    width: 100%;
+    white-space: nowrap;
+    padding: 0.5em 0;
+    color: var(--dark-gray);
+}
+.block-info-row > p {
+    font-size: 0.88em;
+}
+.block-info-row > p:first-child {
+    text-transform: capitalize;
+    min-width: 220px;
+}
+.block-info-row > p:nth-child(2) {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
