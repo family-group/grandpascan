@@ -6,12 +6,15 @@ class Xhr {
         this.xhr = new XMLHttpRequest();
         this.xhr.open(options.method ? options.method.toUpperCase() : 'GET', Xhr.baseUrl + endpoint);
         this.xhr.send(this.body)
-        return this._result();
+        this.result = this.result.bind(this);
+        this.abort = this.abort.bind(this);
     }
     abort() {
-        this.xhr.abort();
+        if (this.xhr.readyState < 4 && this.xhr.readyState > 0) {
+            this.xhr.abort();
+        }
     }
-    _result() {
+    result() {
         return new Promise((resolve, reject) => {
             this.xhr.onload = () => {
                 if (this.xhr.status >= 200 && this.xhr.status <= 300) {
@@ -21,7 +24,9 @@ class Xhr {
                 }
             }
             this.xhr.onerror = () => {
-                reject(JSON.parse(this.xhr.response))
+                reject({
+                    message: 'Network conection error.'
+                })
             }
         })
     }
