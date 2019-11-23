@@ -1,0 +1,13 @@
+.transactions-view-container {
+    width: 90%;
+    margin: 0 auto;
+    /* overflow: hidden; */
+    /* max-width: 900px; */
+}
+.transactions-view-container > h2 {
+    color: var(--black);
+}
+.transactions-list-container {
+    background: #FFF;
+    width: 100%;
+}
