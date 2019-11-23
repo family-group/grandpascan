@@ -1,0 +1,29 @@
+.main-content {
+    flex: 1;
+    padding-left: 2em;
+    padding-right: 2em;
+    overflow: hidden;
+}
+.section-list-container {
+    font-size: 1em;
+    padding: 1em 0;
+}
+.section-list-container-title {
+    color: var(--blue);
+    font-size: 0.9em;
+    padding-bottom: 0.6em;
+}
+.home-main {
+    width: 90%;
+    margin: 0 auto;
+}
+.main-content-wrapper {
+    width: 90%;
+    margin: 0 auto;
+}
+.lasted-operations-list {
+    min-height: 200px;
+    background: #FFF;
+    flex-direction: column;
+    padding: 0.5em 0;
+}
