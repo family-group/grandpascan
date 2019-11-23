@@ -5,6 +5,8 @@ import { createPromise } from 'redux-promise-middleware';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 
 // reducers
+import blockReducer from './blockReducer';
+import transactionReducer from './transactionReducer';
 
 
 
@@ -28,7 +30,8 @@ export function configureStore() {
 // reducers
 function rootReducer() {
 	return combineReducers({
-		
+		blockReducer,
+		transactionReducer
 	});
 }
 
