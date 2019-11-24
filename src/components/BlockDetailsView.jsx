@@ -3,24 +3,21 @@ import React from 'react';
 import './styles/BlockDetailsView.css';
 // importing utils
 import Xhr from '../utils/Xhr';
-// import { dateHumanize } from '../utils/dateFunctions';
-// import Loader from './Loader';
-// import Error from './Error';
 import DetailsBox from './DetailsBox';
 
 class BlockDetailsView extends React.Component {
     constructor() {
         super();
         this.blockLabels = {
-            index: 'Index',
-            difficulty: 'Difficulty',
-            prevBlockHash: 'Previous Block Hash',
-            minedBy: 'Mined by',
-            blockDataHash: 'Block data hash',
-            dateCreated: 'Date created',
-            nonce: 'Nonce',
-            blockHash: 'Block Hash',
-            transactions: 'Transactions included'
+            index: {label: 'Index'},
+            difficulty: {label: 'Difficulty'},
+            prevBlockHash: {label: 'Previous Block Hash', linkTo: '/block'},
+            minedBy: {label: 'Mined by', linkTo: '/address'},
+            blockDataHash: {label: 'Block data hash'},
+            dateCreated: {label: 'Date created', type: 'date'},
+            nonce: {label: 'Nonce'},
+            blockHash: {label: 'Block Hash', linkTo: '/block'},
+            transactions: {label: 'Transactions included'}
         };
         this.getBlock = this.getBlock.bind(this);
     }

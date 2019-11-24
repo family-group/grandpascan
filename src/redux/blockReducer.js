@@ -25,7 +25,7 @@ function blockReducer(state = initialState, action = null) {
                ...state,
                isLoading: false,
                data: {...payload.data, ...state.data},
-               blockIds: payload.ids,
+               blockIds: payload.ids.reverse(),
                isEmpty: payload.ids.length === 0
            };
        case actions.GET_BLOCKS + '_ERROR':

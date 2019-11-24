@@ -1,34 +1,24 @@
 import React from 'react';
 import ShadowBox from './ShadowBox';
-import { dateHumanize } from '../utils/dateFunctions';
 import Loader from './Loader';
 import Error from './Error';
 import { withRouter } from 'react-router-dom';
+import { renderColumnAccordingLabel } from '../utils/granpaCoinFunctions';
+import './styles/DetailsBox.css';
 
 class DetailsBox extends React.Component {
     constructor() {
         super();
         this.goHome = this.goHome.bind(this);
+        this.renderColumnAccordingLabel = renderColumnAccordingLabel.bind(this);
     }
     renderRow(label, content) {
         return (
-            <div key={label} className="block-info-row flex-row">
-                <p>{label}</p>
-                <p>{content}</p>
+            <div key={label} className="details-box-row flex-row">
+                <p className="details-box-content">{label}</p>
+                <p className="details-box-content">{content}</p>
             </div>
         );
-    }
-    formatInfo(label) {
-        if (label === 'transactions') {
-            return this.props.data[label].length;
-        }
-        if (label === 'dateCreated') {
-            return dateHumanize(this.props.data[label]) + ` (${this.props.data[label]})`;
-        }
-        if (label === 'transferSuccessful') {
-            return 'True';
-        }
-        return this.props.data[label];
     }
     renderBlockInfo() {
         if (this.props.isLoading) {
@@ -36,7 +26,7 @@ class DetailsBox extends React.Component {
         }
         if (this.props.data) {
             return Object.keys(this.props.labels).map(label => {
-                return this.renderRow(this.props.labels[label], this.formatInfo(label));
+                return this.renderRow(this.props.labels[label].label, this.renderColumnAccordingLabel(label));
             });
         }
         if (this.props.error) {

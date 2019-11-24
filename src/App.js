@@ -7,6 +7,7 @@ import HomeView from './components/HomeView';
 import TransactionsViewContainer from './containers/TransactionsViewContainer';
 import BlockViewContainer from './containers/BlockDetailsViewContainer';
 import TransactionDetailsViewContainer from './containers/TransactionDetailsViewContainer';
+import BlocksViewContainer from './containers/BlocksViewContainer';
 import Header from "./components/Header";
 import Xhr from "./utils/Xhr";
 // import { apiLocal, apiProduction, appEnv } from "./configs/global";
@@ -35,7 +36,7 @@ const App = () => {
                         <Route path="/block/:blockHash" component={BlockViewContainer} exact />
                         <Route path="/transaction/:transactionDataHash" component={TransactionDetailsViewContainer} exact />
                         <Route path="/transactions" component={TransactionsViewContainer} exact />
-                        <Route path="/blocks" component={TransactionsViewContainer} exact />
+                        <Route path="/blocks" component={BlocksViewContainer} exact />
                     </Switch>
             </Router>
         </Provider>

@@ -13,14 +13,14 @@ class TransactionsView extends React.Component {
         this.getTransactionsViewContainerWidth = this.getTransactionsViewContainerWidth.bind(this);
         this.getAllTransactions = this.getAllTransactions.bind(this);
         this.transactionLabels = {
-            transactionDataHash: 'Hash',
-            dateCreated: 'Date created',
-            from: 'From',
-            to: 'To',
-            value: 'Value',
-            fee: 'Fee',
-            minedInBlockIndex: 'Mined in block index',
-            data: 'Data'
+            transactionDataHash: {label: 'Hash', linkTo: '/transaction'},
+            dateCreated: {label: 'Date created', type: 'date'},
+            from: {label: 'From', linkTo: '/address'},
+            to: {label: 'To', linkTo: '/address'},
+            value: {label: 'Value', type: 'coin'},
+            fee: {label: 'Fee'},
+            minedInBlockIndex: {label: 'Mined in block index'},
+            data: {label: 'Data'}
         };
     }
     componentDidMount() {
@@ -34,9 +34,7 @@ class TransactionsView extends React.Component {
         this.props.getTransactions(this.transactionsRequest);
     }
     getTransactionsViewContainerRef(el) {
-        if (el) {
-            this.TransactionsViewContainerRef = el;
-        }
+        if (el) this.TransactionsViewContainerRef = el;
     }
     getTransactionsViewContainerWidth() {
         if (this.TransactionsViewContainerRef) {
@@ -52,9 +50,7 @@ class TransactionsView extends React.Component {
                     <h2 className="">Transactions</h2>
                     {
                         ids &&
-                            (
-                                <p>{ids.length} Transactions found.</p>
-                            )
+                            (<p>{ids.length} Transactions found.</p>)
                     }
                     <TableData
                         data={ids}

@@ -9,16 +9,16 @@ class TransactionDetailsView extends React.Component {
     constructor() {
         super();
         this.transactionLabels = {
-            from: 'From',
-            to: 'To',
-            value: 'Value',
-            fee: 'Fee',
-            dateCreated: 'Date created',
-            data: 'Data',
-            senderPubKey: 'Sender Public key',
-            transactionDataHash: 'Transaction data hash',
-            minedInBlockIndex: 'Mined in block index',
-            transferSuccessful: 'Transfer successful'
+            from: {label: 'From', linkTo: '/address'},
+            to: {label: 'To', linkTo: '/address'},
+            value: {label: 'Value', type: 'coin'},
+            fee: {label: 'Fee'},
+            dateCreated: {label: 'Date created', type: 'date'},
+            data: {label: 'Data'},
+            senderPubKey: {label: 'Sender Public key'},
+            transactionDataHash: {label: 'Transaction data hash', linkTo: '/transaction'},
+            minedInBlockIndex: {label: 'Mined in block index'},
+            transferSuccessful: {label: 'Transfer successful', capitalize: true}
         }
         this.getTransaction = this.getTransaction.bind(this);
     }

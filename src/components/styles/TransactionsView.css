@@ -1,11 +1,14 @@
 .transactions-view-container {
     width: 90%;
     margin: 0 auto;
-    /* overflow: hidden; */
-    /* max-width: 900px; */
 }
-.transactions-view-container > h2 {
-    color: var(--black);
+.transactions-view-container > h2, .transactions-view-container > p {
+    color: var(--dark-gray);
+}
+.transactions-view-container > p {
+    text-align: right;
+    padding-bottom: 0.5em;
+    font-size: 0.9em;
 }
 .transactions-list-container {
     background: #FFF;

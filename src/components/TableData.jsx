@@ -21,7 +21,6 @@ class TableData extends React.Component {
         this.state = {
             columns: 8
         };
-        this.labels = {...props.labels};
         this.addedListeners = [];
     }
     componentDidMount() {
@@ -52,10 +51,10 @@ class TableData extends React.Component {
         }
     }
     renderTableHead() {
-        if (this.labels) {
-            return Object.keys(this.labels).slice(0, this.state.columns).map(label => {
+        if (this.props.labels) {
+            return Object.keys(this.props.labels).slice(0, this.state.columns).map(label => {
                 return (
-                    <th key={label} className="table-th">{this.labels[label]}</th>
+                    <th key={label} className="table-th">{this.props.labels[label].label}</th>
                 );
             });
         }
@@ -68,7 +67,7 @@ class TableData extends React.Component {
                         key={singleData}
                         id={singleData}
                         index={index}
-                        labels={this.labels}
+                        labels={this.props.labels}
                         columnsToRender={this.state.columns}
                     />
                 );
