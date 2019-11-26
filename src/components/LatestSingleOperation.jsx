@@ -32,7 +32,7 @@ class LatestSingleOperation extends React.Component {
                         {data.blockHash}
                     </Link>
                 </p>
-                <p className="block-column-content">Difficulty {data.difficulty}</p>
+                {/* <p className="block-column-content">Difficulty {data.difficulty}</p> */}
             </React.Fragment>
         )
     }

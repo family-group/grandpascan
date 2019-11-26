@@ -5,6 +5,8 @@ import './styles/TransactionsView.css';
 import Xhr from '../utils/Xhr';
 // importing components
 import TableData from './TableData';
+// importing columns data
+import { blocksViewData } from '../components-data/blocksViewData';
 
 class BlocksView extends React.Component {
     constructor() {
@@ -12,15 +14,6 @@ class BlocksView extends React.Component {
         this.getBlocksViewContainerRef = this.getBlocksViewContainerRef.bind(this);
         this.getBlocksViewContainerWidth = this.getBlocksViewContainerWidth.bind(this);
         this.getAllBlocks = this.getAllBlocks.bind(this);
-        this.blockLabels = {
-            blockHash: {label: 'Hash', linkTo: '/block'},
-            dateCreated: {label: 'Date created', type: 'date'},
-            index: {label: 'Index'},
-            prevBlockHash: {label: 'Previous hash', linkTo: '/block'},
-            difficulty: {label: 'Difficulty'},
-            minedBy: {label: 'Mined by', linkTo: '/address'},
-            nonce: {label: 'Nonce'}
-        };
     }
     componentDidMount() {
         this.getAllBlocks();
@@ -53,7 +46,7 @@ class BlocksView extends React.Component {
                     }
                     <TableData
                         data={ids}
-                        labels={this.blockLabels}
+                        columns={blocksViewData}
                         className={isLoading || error ? 'transactions-list-container flex-axis-centered spacer-lg' : 'transactions-list-container flex-column'}
                         tableContainerWidth={this.getBlocksViewContainerWidth}
                         isLoading={isLoading}

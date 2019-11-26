@@ -8,11 +8,11 @@ import DetailsBox from './DetailsBox';
 class BlockDetailsView extends React.Component {
     constructor() {
         super();
-        this.blockLabels = {
+        this.blockRows = {
             index: {label: 'Index'},
             difficulty: {label: 'Difficulty'},
             prevBlockHash: {label: 'Previous Block Hash', linkTo: '/block'},
-            minedBy: {label: 'Mined by', linkTo: '/address'},
+            minedBy: {label: 'Mined by', linkTo: '/address', type: 'address'},
             blockDataHash: {label: 'Block data hash'},
             dateCreated: {label: 'Date created', type: 'date'},
             nonce: {label: 'Nonce'},
@@ -23,6 +23,11 @@ class BlockDetailsView extends React.Component {
     }
     componentDidMount() {
         if (!this.props.data) {
+            this.getBlock();
+        }
+    }
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.blockHash !== this.props.match.params.blockHash) {
             this.getBlock();
         }
     }
@@ -40,7 +45,7 @@ class BlockDetailsView extends React.Component {
                     </h2>
                     <DetailsBox 
                         data={this.props.data}
-                        labels={this.blockLabels}
+                        rows={this.blockRows}
                         error={this.props.error}
                         isLoading={this.props.isLoading}
                     />

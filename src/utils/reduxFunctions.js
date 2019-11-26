@@ -1,15 +1,15 @@
-export function payloadFormater(action, identifier) {
+export function payloadFormater(payload, identifier) {
     let data = {};
     let ids = [];
 
-    if (typeof action.payload === 'object' && Array.isArray(action.payload)) {
-        action.payload.forEach(singleData => {
+    if (typeof payload === 'object' && Array.isArray(payload)) {
+        payload.forEach(singleData => {
             data[singleData[identifier]] = singleData;
             ids.push(singleData[identifier]);
         });
     } else {
-        data[action.payload[identifier]] = action.payload;
-        ids.push(action.payload[identifier]);
+        data[payload[identifier]] = payload;
+        ids.push(payload[identifier]);
     }
     
     return {

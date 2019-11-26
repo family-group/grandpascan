@@ -3,7 +3,7 @@ import React from 'react';
 import LatestOperationsContainer from '../containers/LatestOperationsContainer';
 // importing styles
 import './styles/HomeView.css';
-import AsideContainer from '../containers/AsideContainer';
+import AsideContainer from '../containers/HomeViewSideElementContainer';
 
 
 class HomeView extends React.Component {

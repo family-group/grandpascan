@@ -9,12 +9,12 @@ class TableDataRow extends React.Component {
         this.renderColumnAccordingLabel = renderColumnAccordingLabel.bind(this);
     }
     renderColumns() {
-        const { labels, columnsToRender } = this.props;
-        if (labels) {
-            return Object.keys(labels).slice(0, columnsToRender).map(label => {
+        const { columns, columnsToRender } = this.props;
+        if (columns) {
+            return Object.keys(columns).slice(0, columnsToRender).map(key => {
                 return (
-                    <td key={label} className="transaction-td">
-                        {this.renderColumnAccordingLabel(label)}
+                    <td key={key} className="transaction-td">
+                        {this.renderColumnAccordingLabel(columns, key)}
                     </td>
                 );
             });

@@ -11,6 +11,12 @@
     padding: 0 1em;
     text-align: center;
 }
+.latest-box-info > a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.9em;
+}
 .side-box-container .image-container {
     max-width: 50px;
     min-width: 50px;

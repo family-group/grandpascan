@@ -20,7 +20,7 @@ function blockReducer(state = initialState, action = null) {
                error: false
            };
        case actions.GET_BLOCKS + '_SUCCESS':
-           payload = payloadFormater(action, 'blockHash')
+           payload = payloadFormater(action.payload, 'blockHash')
            return {
                ...state,
                isLoading: false,
@@ -41,7 +41,7 @@ function blockReducer(state = initialState, action = null) {
                error: false
            };
        case actions.GET_BLOCK_BY_HASH + '_SUCCESS':
-           payload = payloadFormater(action, 'blockHash')
+           payload = payloadFormater(action.payload, 'blockHash')
            return {
                ...state,
                isLoading: false,

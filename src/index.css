@@ -80,6 +80,10 @@ main {
 .full-width {
     width: 100%;
 }
+.main-container {
+    width: 90%;
+    margin: 0 auto;
+}
 .btn {
     outline: transparent;
     border: none;
@@ -88,6 +92,9 @@ main {
     background: var(--blue);
     border-radius: 4px;
     cursor: pointer;
+}
+.flex {
+    flex: 1;
 }
 .error-padding-large {
     padding: 3em 1em;
@@ -98,4 +105,12 @@ main {
 .spacer-lg {
     padding: 3em 0;
     text-align: center;
+}
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.no-overflow {
+    overflow: hidden;
 }

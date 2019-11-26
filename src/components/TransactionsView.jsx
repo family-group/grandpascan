@@ -5,6 +5,8 @@ import './styles/TransactionsView.css';
 import Xhr from '../utils/Xhr';
 // importing components
 import TableData from './TableData';
+// importing columns
+import { transactionsViewData } from '../components-data/transactionsViewData';
 
 class TransactionsView extends React.Component {
     constructor() {
@@ -12,16 +14,6 @@ class TransactionsView extends React.Component {
         this.getTransactionsViewContainerRef = this.getTransactionsViewContainerRef.bind(this);
         this.getTransactionsViewContainerWidth = this.getTransactionsViewContainerWidth.bind(this);
         this.getAllTransactions = this.getAllTransactions.bind(this);
-        this.transactionLabels = {
-            transactionDataHash: {label: 'Hash', linkTo: '/transaction'},
-            dateCreated: {label: 'Date created', type: 'date'},
-            from: {label: 'From', linkTo: '/address'},
-            to: {label: 'To', linkTo: '/address'},
-            value: {label: 'Value', type: 'coin'},
-            fee: {label: 'Fee'},
-            minedInBlockIndex: {label: 'Mined in block index'},
-            data: {label: 'Data'}
-        };
     }
     componentDidMount() {
         this.getAllTransactions();
@@ -43,7 +35,7 @@ class TransactionsView extends React.Component {
     }
     render() {
         console.log('TransactionsView')
-        const { ids, isLoading, error } = this.props;
+        const { ids, isLoading, error, isEmpty } = this.props;
         return (
             <main className="full-width">
                 <div ref={this.getTransactionsViewContainerRef} className="transactions-view-container">
@@ -54,11 +46,12 @@ class TransactionsView extends React.Component {
                     }
                     <TableData
                         data={ids}
-                        labels={this.transactionLabels}
+                        columns={transactionsViewData}
                         className={isLoading || error ? 'transactions-list-container flex-axis-centered spacer-lg' : 'transactions-list-container flex-column'}
                         tableContainerWidth={this.getTransactionsViewContainerWidth}
                         isLoading={isLoading}
                         error={error}
+                        isEmpty={isEmpty}
                         retryFunction={this.getAllTransactions}
                     >
                         

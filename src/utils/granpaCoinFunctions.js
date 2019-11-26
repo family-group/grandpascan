@@ -10,18 +10,24 @@ export function toGrandsonCoin(amount) {
 export function toGrandpaCoin(amount) {
     return BigNumber(amount).dividedBy(COINS.grandpa).toString() + ' GPC';
 }
-export function renderColumnAccordingLabel(label) {
-    const { labels, data } = this.props;
+export function renderColumnAccordingLabel(obj, key) {
+    const { data } = this.props;
 
-    if (labels[label].type && labels[label].type.toLowerCase() === 'date') 
-        return dateHumanize(data[label]);
-    if (labels[label].type && labels[label].type.toLowerCase() === 'coin') 
-        return toGrandpaCoin(data[label]);
-    if (labels[label].linkTo)
-        return <Link to={labels[label].linkTo + '/' + data[label]}>{data[label]}</Link>;
-    if (Array.isArray(data[label]))
-        return data[label].length;
-    if (labels[label].capitalize)
-        return data[label].toString().slice(0, 1).toUpperCase() + data[label].toString().slice(1);
-    return data[label].toString();
+    if (data[key] === undefined || data[key] === null) 
+        return 'N/A';
+    if (obj[key].type && obj[key].type.toLowerCase() === 'date') 
+        return dateHumanize(data[key]);
+    if (obj[key].type && obj[key].type.toLowerCase() === 'coin') 
+        return toGrandpaCoin(data[key]);
+    if (obj[key].linkTo)
+        return (
+            <Link to={obj[key].linkTo + '/' + data[key] + `${obj[key].type === 'address' ? '/transactions' : ''}`}>
+                {data[key]}
+            </Link>
+        );
+    if (Array.isArray(data[key]))
+        return data[key].length;
+    if (obj[key].capitalize)
+        return data[key].toString().slice(0, 1).toUpperCase() + data[key].toString().slice(1);
+    return data[key].toString();
 }

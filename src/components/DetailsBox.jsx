@@ -25,8 +25,8 @@ class DetailsBox extends React.Component {
             return <Loader />
         }
         if (this.props.data) {
-            return Object.keys(this.props.labels).map(label => {
-                return this.renderRow(this.props.labels[label].label, this.renderColumnAccordingLabel(label));
+            return Object.keys(this.props.rows).map(key => {
+                return this.renderRow(this.props.rows[key].label, this.renderColumnAccordingLabel(this.props.rows, key));
             });
         }
         if (this.props.error) {

@@ -7,6 +7,7 @@ import HomeView from './components/HomeView';
 import TransactionsViewContainer from './containers/TransactionsViewContainer';
 import BlockViewContainer from './containers/BlockDetailsViewContainer';
 import TransactionDetailsViewContainer from './containers/TransactionDetailsViewContainer';
+import AddressTransactionsViewContainer from './containers/AddressTransactionsViewContainer';
 import BlocksViewContainer from './containers/BlocksViewContainer';
 import Header from "./components/Header";
 import Xhr from "./utils/Xhr";
@@ -32,7 +33,7 @@ const App = () => {
                 <Header />
                     <Switch>
                         <Route path="/" component={HomeView} exact />
-                        <Route path="/address/:address/transactions" component={HomeView} exact />
+                        <Route path="/address/:address/transactions" component={AddressTransactionsViewContainer} exact />
                         <Route path="/block/:blockHash" component={BlockViewContainer} exact />
                         <Route path="/transaction/:transactionDataHash" component={TransactionDetailsViewContainer} exact />
                         <Route path="/transactions" component={TransactionsViewContainer} exact />

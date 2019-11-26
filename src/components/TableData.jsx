@@ -19,7 +19,7 @@ class TableData extends React.Component {
         this.setMediaQueries = this.setMediaQueries.bind(this);
         this.changeColumnsToRender = this.changeColumnsToRender.bind(this);
         this.state = {
-            columns: 8
+            columnsToRender: 8
         };
         this.addedListeners = [];
     }
@@ -46,15 +46,15 @@ class TableData extends React.Component {
     changeColumnsToRender(query) {
         if (query.matches) {
             this.setState({
-                columns: this.mediaQueries[query.media]
+                columnsToRender: this.mediaQueries[query.media]
             });
         }
     }
     renderTableHead() {
-        if (this.props.labels) {
-            return Object.keys(this.props.labels).slice(0, this.state.columns).map(label => {
+        if (this.props.columns) {
+            return Object.keys(this.props.columns).slice(0, this.state.columnsToRender).map(key => {
                 return (
-                    <th key={label} className="table-th">{this.props.labels[label].label}</th>
+                    <th key={key} className="table-th">{this.props.columns[key].label}</th>
                 );
             });
         }
@@ -67,8 +67,8 @@ class TableData extends React.Component {
                         key={singleData}
                         id={singleData}
                         index={index}
-                        labels={this.props.labels}
-                        columnsToRender={this.state.columns}
+                        columns={this.props.columns}
+                        columnsToRender={this.state.columnsToRender}
                     />
                 );
             });
@@ -77,12 +77,23 @@ class TableData extends React.Component {
     renderTableContent() {
         if (this.props.isLoading)
             return <Loader tag="tr" />;
+        if (this.props.isEmpty) {
+            return (
+                <Error 
+                    errorMessage="There are no transactions yet."
+                    className="error-padding-large"
+                    errorMessageClassName="spacer-lg"
+                    tag="tr"
+                    retryFunction={this.props.retryFunction}
+                />
+            );
+        }
         if (this.props.error) {
             return (
                 <Error 
                     errorMessage={this.props.error.message}
                     className="error-padding-large"
-                    errorMessageClassName="spacer"
+                    errorMessageClassName="spacer-lg"
                     tag="tr"
                     retryFunction={this.props.retryFunction}
                 />

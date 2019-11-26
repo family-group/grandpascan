@@ -7,6 +7,7 @@ import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 // reducers
 import blockReducer from './blockReducer';
 import transactionReducer from './transactionReducer';
+import balanceReducer from './balanceReducer';
 
 
 
@@ -31,7 +32,8 @@ export function configureStore() {
 function rootReducer() {
 	return combineReducers({
 		blockReducer,
-		transactionReducer
+		transactionReducer,
+		balanceReducer
 	});
 }
 

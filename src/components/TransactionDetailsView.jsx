@@ -8,13 +8,13 @@ import DetailsBox from './DetailsBox';
 class TransactionDetailsView extends React.Component {
     constructor() {
         super();
-        this.transactionLabels = {
-            from: {label: 'From', linkTo: '/address'},
-            to: {label: 'To', linkTo: '/address'},
+        this.transactionRows = {
+            from: {label: 'From', linkTo: '/address', type: 'address'},
+            to: {label: 'To', linkTo: '/address', type: 'address'},
             value: {label: 'Value', type: 'coin'},
-            fee: {label: 'Fee'},
+            fee: {label: 'Fee', type: 'coin'},
             dateCreated: {label: 'Date created', type: 'date'},
-            data: {label: 'Data'},
+            data: {label: 'Data', capitalize: true},
             senderPubKey: {label: 'Sender Public key'},
             transactionDataHash: {label: 'Transaction data hash', linkTo: '/transaction'},
             minedInBlockIndex: {label: 'Mined in block index'},
@@ -42,7 +42,7 @@ class TransactionDetailsView extends React.Component {
                     </h2>
                     <DetailsBox 
                         data={this.props.data}
-                        labels={this.transactionLabels}
+                        rows={this.transactionRows}
                         error={this.props.error}
                         isLoading={this.props.isLoading}
                     />
