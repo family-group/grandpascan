@@ -82,3 +82,17 @@
     text-overflow: ellipsis;
     display: block;
 }
+@media (max-width: 349px) {
+    .single-block-container > .block-column:last-child {
+        min-width: auto;
+    }
+    .single-block-container > .block-column:first-child {
+        font-size: 0.5em;
+        min-width: 130px;
+    }
+    .index-container > p {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}

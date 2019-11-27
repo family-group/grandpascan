@@ -27,3 +27,12 @@
     flex-direction: column;
     padding: 0.5em 0;
 }
+@media (max-width: 587px) {
+    .main-content {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+    .home-main {
+        width: 100%;
+    }
+}

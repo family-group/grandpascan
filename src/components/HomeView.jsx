@@ -7,10 +7,46 @@ import HomeViewSideElementContainer from '../containers/HomeViewSideElementConta
 
 
 class HomeView extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            shouldRenderSideBox: false
+        };
+        this.mediaQuery = window.matchMedia('(max-width: 967px) and (min-width: 100px)');
+        this.setMatchMedia = this.setMatchMedia.bind(this);
+        this.renderSideBox = this.renderSideBox.bind(this);
+    }
+    componentDidMount() {
+        this.setMatchMedia();
+    }
+    setMatchMedia() {
+        this.mediaQuery.addListener(this.renderSideBox);
+        this.renderSideBox(this.mediaQuery)
+    }
+    componentWillUnmount() {
+        this.mediaQuery.removeListener(this.renderSideBox);
+    }
+    renderSideBox(query) {
+        if (query.matches) {
+            if (this.state.shouldRenderSideBox) {
+                this.setState({
+                    shouldRenderSideBox: false
+                });
+            }
+            
+        } else {
+            if (!this.state.shouldRenderSideBox) {
+                this.setState({
+                    shouldRenderSideBox: true
+                });
+            }
+        }
+    }
     render() {
+        console.log('rendering', this.state.shouldRenderSideBox)
         return (
             <main className="home-main flex-row">
-                <HomeViewSideElementContainer />
+                {this.state.shouldRenderSideBox && <HomeViewSideElementContainer />}
                 <div className="main-content">
                     <LatestOperationsContainer
                         type="BLOCK" 

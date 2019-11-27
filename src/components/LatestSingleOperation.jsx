@@ -7,6 +7,41 @@ import { dateHumanize } from '../utils/dateFunctions';
 import { toGrandpaCoin } from '../utils/granpaCoinFunctions';
 
 class LatestSingleOperation extends React.Component {
+    constructor() {
+        super();
+        this.mediaQuery = window.matchMedia('(max-width: 620px) and (min-width: 100px)');
+        this.setMatchMedia = this.setMatchMedia.bind(this);
+        this.renderColumnsAccordingWindowSize = this.renderColumnsAccordingWindowSize.bind(this);
+        this.state = {
+            shouldRenderLastColumn: false
+        };
+    }
+    componentDidMount() {
+        this.setMatchMedia();
+    }
+    setMatchMedia() {
+        this.mediaQuery.addListener(this.renderColumnsAccordingWindowSize);
+        this.renderColumnsAccordingWindowSize(this.mediaQuery)
+    }
+    componentWillUnmount() {
+        this.mediaQuery.removeListener(this.renderColumnsAccordingWindowSize);
+    }
+    renderColumnsAccordingWindowSize(query) {
+        if (query.matches) {
+            if (this.state.shouldRenderLastColumn) {
+                this.setState({
+                    shouldRenderLastColumn: false
+                });
+            }
+            
+        } else {
+            if (!this.state.shouldRenderLastColumn) {
+                this.setState({
+                    shouldRenderLastColumn: true
+                });
+            }
+        }
+    }
     renderSecondColumn() {
         const { data } = this.props;
         if (this.props.type === 'TRANSACTION') {
@@ -75,11 +110,16 @@ class LatestSingleOperation extends React.Component {
                 <div className="block-column">
                         {this.renderSecondColumn()}
                 </div>
-                <div className="block-column">
-                    <div className="flex-column">
-                        {this.renderLastColumn()}
-                    </div>
-                </div>
+                {
+                    this.state.shouldRenderLastColumn && 
+                        (
+                            <div className="block-column">
+                                <div className="flex-column">
+                                    {this.renderLastColumn()}
+                                </div>
+                            </div>
+                        )
+                }
             </article>
         )
     }
