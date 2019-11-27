@@ -3,9 +3,11 @@ import { payloadFormater } from '../utils/reduxFunctions';
 
 const initialState = {
     isLoading: false,
-    transactionIds: [],
+    pendingTransactionIds: [],
+    confirmedTransactionIds: [],
     data: {},
-    isEmpty: false,
+    arePendingEmpty: false,
+    areConfirmedEmpty: false,
     error: false
 };
 
@@ -17,16 +19,18 @@ function transactionReducer(state = initialState, action = null) {
            return {
                ...state,
                isLoading: true,
-               error: false
+               error: false,
+               [action.meta.status === 'confirmed' ? 'areConfirmedEmpty' : 'arePendingEmpty']: false
            };
        case actions.GET_TRANSACTIONS + '_SUCCESS':
-           payload = payloadFormater(action.payload, 'transactionDataHash')
+           payload = payloadFormater(action.payload, 'transactionDataHash');
+           
            return {
                ...state,
                isLoading: false,
                data: {...payload.data, ...state.data},
-               transactionIds: payload.ids,
-               isEmpty: payload.ids.length === 0
+               [action.meta.status === 'confirmed' ? 'confirmedTransactionIds' : 'pendingTransactionIds']: payload.ids,
+               [action.meta.status === 'confirmed' ? 'areConfirmedEmpty' : 'arePendingEmpty']: payload.ids.length === 0
            };
         case actions.GET_TRANSACTIONS + '_ERROR':
             return {

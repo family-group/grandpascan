@@ -13,6 +13,8 @@ export function toGrandpaCoin(amount) {
 export function renderColumnAccordingLabel(obj, key) {
     const { data } = this.props;
 
+    if (key === 'status')
+        return data['transferSuccessful'] ? 'Confirmed' : 'Pending';
     if (data[key] === undefined || data[key] === null) 
         return 'N/A';
     if (obj[key].type && obj[key].type.toLowerCase() === 'date') 

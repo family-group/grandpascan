@@ -8,6 +8,7 @@ import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import blockReducer from './blockReducer';
 import transactionReducer from './transactionReducer';
 import balanceReducer from './balanceReducer';
+import peerReducer from './peerReducer';
 
 
 
@@ -33,7 +34,8 @@ function rootReducer() {
 	return combineReducers({
 		blockReducer,
 		transactionReducer,
-		balanceReducer
+		balanceReducer,
+		peerReducer
 	});
 }
 

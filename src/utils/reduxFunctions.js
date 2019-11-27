@@ -1,4 +1,4 @@
-export function payloadFormater(payload, identifier) {
+export function payloadFormater(payload, identifier, type = null) {
     let data = {};
     let ids = [];
 
@@ -6,6 +6,11 @@ export function payloadFormater(payload, identifier) {
         payload.forEach(singleData => {
             data[singleData[identifier]] = singleData;
             ids.push(singleData[identifier]);
+        });
+    } else if (type && type === 'object' && typeof payload === 'object') {
+        Object.keys(payload).forEach(key => {
+            data[payload[key].nodeId] = payload[key];
+            ids.push(payload[key].nodeId);
         });
     } else {
         data[payload[identifier]] = payload;

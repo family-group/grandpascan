@@ -3,14 +3,14 @@ import React from 'react';
 import LatestOperationsContainer from '../containers/LatestOperationsContainer';
 // importing styles
 import './styles/HomeView.css';
-import AsideContainer from '../containers/HomeViewSideElementContainer';
+import HomeViewSideElementContainer from '../containers/HomeViewSideElementContainer';
 
 
 class HomeView extends React.Component {
     render() {
         return (
             <main className="home-main flex-row">
-                <AsideContainer />
+                <HomeViewSideElementContainer />
                 <div className="main-content">
                     <LatestOperationsContainer
                         type="BLOCK" 

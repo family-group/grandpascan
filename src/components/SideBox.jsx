@@ -4,8 +4,17 @@ import './styles/SideBox.css';
 // importing utils
 import { toGrandpaCoin } from '../utils/granpaCoinFunctions';
 import Link from './Link';
+import Loader from './Loader';
+import Error from './Error';
 
 class SideBox extends React.Component {
+    shouldComponentUpdate(prevProps) {
+        if (prevProps.isLoading !== this.props.isLoading) 
+            return true;
+        // if (prevProps.content !== this.props.content)
+        //     return true;
+        return false;
+    }
     renderFirstRowInfo() {
         const { data, titleContent, parse } = this.props;
         if (data) {
@@ -14,19 +23,22 @@ class SideBox extends React.Component {
             );
         }
     }
-    renderSecondRowInfo() {
-        const { data, type, subtitle, parse } = this.props;
-        if (data && type === 'BLOCK' && subtitle) {
+    renderData() {
+        const { content, isLoading, error, retryFunction } = this.props;
+        if (isLoading) {
             return (
-                <div className="subtitle-box-container">
-                    <h4 className="sidebox-title">{subtitle}</h4>
-                    <p className="box-content ">{ parse ? toGrandpaCoin(data.transactions.length) : data.transactions.length}</p>
-                </div>
+                <Loader />
             );
         }
-    }
-    renderData() {
-        const { content } = this.props;
+        if (error) {
+            return (
+                <Error 
+                    errorMessage="Ups! Something happened."
+                    errorMessageClassName="side-box-error"
+                    retryFunction={retryFunction}
+                />
+            );
+        }
         if (content) {
             return content.map(singleData => {
                 return (
@@ -41,14 +53,21 @@ class SideBox extends React.Component {
     renderFormatedData(singleData) {
         if (singleData.linkTo) {
             return (
-                <Link to={singleData.linkTo + '/' + singleData.content + `${singleData.type === 'address' ? '/transactions' : ''}`}>
+                <Link to={this.getFormattedLinkTo(singleData)}>
                     {singleData.content}
                 </Link>
             );
         }
         return <p className="box-content ellipsis">{singleData.content}</p>;
     }
+    getFormattedLinkTo(singleData) {
+        if (singleData.withParam) {
+            return singleData.linkTo + '/' + singleData.content + `${singleData.type === 'address' ? '/transactions' : ''}`;
+        }
+        return singleData.linkTo;
+    }
     render() {
+        console.log('SideBox')
         return (
             <div className="side-box-container">
                 <div className="content-container flex-row">
@@ -63,11 +82,6 @@ class SideBox extends React.Component {
                     <div className="flex-column flex no-overflow">
                         {this.renderData()}
                     </div>
-                    {/* <div className="latest-box-info flex-column">
-                        <h4 className="sidebox-title">{this.props.title}</h4>
-                        {this.renderFirstRowInfo()}
-                        {this.renderSecondRowInfo()}
-                    </div> */}
                 </div>
             </div>
         );

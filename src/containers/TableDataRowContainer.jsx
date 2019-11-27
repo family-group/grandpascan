@@ -8,7 +8,7 @@ export default withRouter(
     connect(
         (state, ownProps) => {
             return {
-                data: state.transactionReducer.data[ownProps.id] || state.blockReducer.data[ownProps.id]
+                data: state.transactionReducer.data[ownProps.id] || state.blockReducer.data[ownProps.id] || state.peerReducer.data[ownProps.id]
             };
         }, 
         null

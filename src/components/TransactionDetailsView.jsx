@@ -19,7 +19,7 @@ class TransactionDetailsView extends React.Component {
             transactionDataHash: {label: 'Transaction data hash', linkTo: '/transaction'},
             minedInBlockIndex: {label: 'Mined in block index'},
             transferSuccessful: {label: 'Transfer successful', capitalize: true}
-        }
+        };
         this.getTransaction = this.getTransaction.bind(this);
     }
     componentDidMount() {

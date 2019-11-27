@@ -62,11 +62,11 @@ class LatestSingleOperation extends React.Component {
     }
     render() {
         console.log('LatestSingleOperation')
-        const { data } = this.props;
+        const { data, type } = this.props;
         return (
             <article className="single-block-container">
                 <div className="block-column">
-                    <div className="block-box-identifier">B</div>
+                    <div className="block-box-identifier">{type === 'BLOCK' ? 'B' : 'T'}</div>
                     <div className="flex-column index-container">
                         {this.getIndexOrTransactionHash()}
                         <p className="block-mined-date">{dateHumanize(data.dateCreated)}</p>

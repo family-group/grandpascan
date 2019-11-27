@@ -10,9 +10,9 @@ export default withRouter(
     connect(
         (state, ownProps) => {
             return {
-                ids: state.transactionReducer.transactionIds,
+                ids: ownProps.location.pathname === '/transactions' ? state.transactionReducer.confirmedTransactionIds : state.transactionReducer.pendingTransactionIds,
                 isLoading: state.transactionReducer.isLoading,
-                isEmpty: state.transactionReducer.isEmpty,
+                isEmpty: state.transactionReducer[ownProps.location.pathname === '/transactions' ? 'areConfirmedEmpty' : 'arePendingEmpty'],
                 error: state.transactionReducer.error
             };
         }, 

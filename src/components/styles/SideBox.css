@@ -34,3 +34,6 @@
 .sidebox-title {
     color: var(--blue);
 }
+.side-box-error {
+    text-align: center;
+}

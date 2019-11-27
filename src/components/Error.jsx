@@ -13,7 +13,7 @@ class Error extends React.Component {
                     {...Object.assign({}, errorMessageClassName ? {className: errorMessageClassName } : {})}
                 >
                     <p>{errorMessage}</p>
-                    <p><button className="btn" onClick={retryFunction}>Retry</button></p>
+                    <p><button className="btn" onClick={retryFunction}>{this.props.buttonMessage || 'Retry'}</button></p>
                 </ChildTag>
             </Tag>
         );

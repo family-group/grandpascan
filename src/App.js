@@ -6,6 +6,7 @@ import { Switch, Redirect, Route } from "react-router";
 import HomeView from './components/HomeView';
 import TransactionsViewContainer from './containers/TransactionsViewContainer';
 import BlockViewContainer from './containers/BlockDetailsViewContainer';
+import PeersViewContainer from './containers/PeersViewContainer';
 import TransactionDetailsViewContainer from './containers/TransactionDetailsViewContainer';
 import AddressTransactionsViewContainer from './containers/AddressTransactionsViewContainer';
 import BlocksViewContainer from './containers/BlocksViewContainer';
@@ -37,7 +38,9 @@ const App = () => {
                         <Route path="/block/:blockHash" component={BlockViewContainer} exact />
                         <Route path="/transaction/:transactionDataHash" component={TransactionDetailsViewContainer} exact />
                         <Route path="/transactions" component={TransactionsViewContainer} exact />
+                        <Route path="/transactions/pending" component={TransactionsViewContainer} exact />
                         <Route path="/blocks" component={BlocksViewContainer} exact />
+                        <Route path="/node/peers" component={PeersViewContainer} exact />
                     </Switch>
             </Router>
         </Provider>

@@ -4,41 +4,67 @@ import './styles/HomeViewSideElement.css';
 // importing components
 import SideBox from '../components/SideBox';
 import latestBlockIcon from '../assets/images/CUBO.svg';
-import latestTransactionIcon from '../assets/images/TRANSACTION.svg';
+import networkIcon from '../assets/images/network.svg';
 import difficultyIcon from '../assets/images/DIFFICULTY.svg';
-import { toGrandpaCoin } from '../utils/granpaCoinFunctions';
+// import { toGrandpaCoin } from '../utils/granpaCoinFunctions';
+import Xhr from '../utils/Xhr';
 
 class HomeViewSideElement extends React.Component {
+    constructor() {
+        super();
+        this.getAllPeers = this.getAllPeers.bind(this);
+        this.getMainNodeInfo = this.getMainNodeInfo.bind(this);
+    }
+    componentDidMount() {
+        this.getAllPeers();
+        this.getMainNodeInfo();
+    }
+    getAllPeers() {
+        const peersRequest = new Xhr('peers');
+        this.props.getPeers(peersRequest);
+    }
+    getMainNodeInfo() {
+        const nodeInfoRequest = new Xhr('info');
+        this.props.getNodeInfo(nodeInfoRequest);
+    }
     render() {
         console.log('HomeViewSideElement')
         return (
             <aside className="main-aside">
                 <SideBox
+                    isLoading={this.props.isPeerLoading}
+                    error={this.props.peersError}
+                    retryFunction={this.getAllPeers}
                     content={[
                         {
-                            title: 'Latest block miner',
-                            content: this.props.blockData && this.props.blockData.minedBy,
-                            type: 'address',
-                            linkTo: '/address'
+                            title: 'Network peers',
+                            content: this.props.peerIds && this.props.peerIds.length,
+                            linkTo: '/node/peers'
                         }
                     ]}
-                    image={latestBlockIcon}
+                    image={networkIcon}
                 />
                 <SideBox 
-                    image={latestTransactionIcon}
+                    image={latestBlockIcon}
+                    isLoading={this.props.isNodeInfoLoading}
+                    error={this.props.nodeInfoError}
+                    retryFunction={this.getMainNodeInfo}
                     content={[
                         {
-                            title: 'Latest transaction value',
-                            content: this.props.transactionData && toGrandpaCoin(this.props.transactionData.value)
+                            title: 'Network blocks',
+                            content: this.props.nodeInfo && this.props.nodeInfo.blocksCount
                         }
                     ]}
                 />
                 <SideBox
+                    isLoading={this.props.isNodeInfoLoading}
+                    error={this.props.nodeInfoError}
+                    retryFunction={this.getMainNodeInfo}
                     image={difficultyIcon}
                     content={[
                         {
-                            title: 'Latest block difficulty',
-                            content: this.props.blockData && this.props.blockData.difficulty
+                            title: 'Network difficulty',
+                            content: this.props.nodeInfo && this.props.nodeInfo.cumulativeDifficulty
                         }
                     ]}
                 />

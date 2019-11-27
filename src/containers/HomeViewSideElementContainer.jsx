@@ -2,18 +2,21 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 // component
 import HomeViewSideElement from '../components/HomeViewSideElement';
+import { getPeers, getNodeInfo } from '../redux/peerActions';
 
 
 export default withRouter(
     connect(
-        (state, ownProps) => {
+        state => {
             return {
-                blockData: (state.blockReducer.blockIds[0] && state.blockReducer.data[state.blockReducer.blockIds[0]]) && state.blockReducer.data[state.blockReducer.blockIds[0]],
-                isBlockLoading: state.blockReducer.isLoading,
-                transactionData: (state.transactionReducer.transactionIds[0] && state.transactionReducer.data[state.transactionReducer.transactionIds[0]]) && state.transactionReducer.data[state.transactionReducer.transactionIds[0]],
-                isTransactionLoading: state.transactionReducer.isLoading
+                peerIds: state.peerReducer.peerIds,
+                isPeerLoading: state.peerReducer.isLoading,
+                peersError: state.peerReducer.error,
+                nodeInfo: state.peerReducer.nodeInfo,
+                isNodeInfoLoading: state.peerReducer.isNodeInfoLoading,
+                nodeInfoError: state.peerReducer.nodeInfoError
             };
         }, 
-        null
+        {getPeers, getNodeInfo}
     )(HomeViewSideElement)
 );

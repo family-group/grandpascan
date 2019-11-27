@@ -11,7 +11,7 @@ export default withRouter(
     connect(
         (state, ownProps) => {
             return {
-                ids: ownProps.type === 'BLOCK' ? state.blockReducer.blockIds : state.transactionReducer.transactionIds,
+                ids: ownProps.type === 'BLOCK' ? state.blockReducer.blockIds : state.transactionReducer.confirmedTransactionIds,
                 isLoading: ownProps.type === 'BLOCK' ? state.blockReducer.isLoading : state.transactionReducer.isLoading,
                 isEmpty: ownProps.type === 'BLOCK' ? state.blockReducer.isEmpty : state.transactionReducer.isEmpty,
                 error: ownProps.type === 'BLOCK' ? state.blockReducer.error : state.transactionReducer.error

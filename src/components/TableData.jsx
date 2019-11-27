@@ -80,10 +80,11 @@ class TableData extends React.Component {
         if (this.props.isEmpty) {
             return (
                 <Error 
-                    errorMessage="There are no transactions yet."
+                    errorMessage={this.props.errorMessage || 'There are no transactions yet.'}
                     className="error-padding-large"
                     errorMessageClassName="spacer-lg"
                     tag="tr"
+                    buttonMessage={this.props.buttonMessage}
                     retryFunction={this.props.retryFunction}
                 />
             );

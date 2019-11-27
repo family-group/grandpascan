@@ -114,3 +114,6 @@ main {
 .no-overflow {
     overflow: hidden;
 }
+.lds-ripple {
+    margin: 0 auto;
+}

@@ -6,10 +6,11 @@ export const actions = {
     GET_ADDRESS_TRANSACTIONS: 'GET_ADDRESS_TRANSACTIONS'
 };
 
-export function getTransactions(request) {
+export function getTransactions(request, status = 'confirmed') {
     return {
         type: actions.GET_TRANSACTIONS,
-        payload: request.result()
+        payload: request.result(),
+        meta: {status}
     }
 }
 export function getTransactionByHash(request) {
