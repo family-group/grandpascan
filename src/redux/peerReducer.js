@@ -1,5 +1,5 @@
 import { actions } from './peerActions';
-import { payloadFormater, storeGlobalPeers, storeGlobalSinglePeer } from '../utils/reduxFunctions';
+import { payloadFormater, storeGlobalPeers } from '../utils/reduxFunctions';
 
 const initialState = {
     isLoading: false,

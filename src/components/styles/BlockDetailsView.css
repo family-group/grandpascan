@@ -34,3 +34,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.genesis-block-prev-hash {
+    font-size: 1em;
+    color: var(--dark-gray);
+}

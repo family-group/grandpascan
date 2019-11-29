@@ -22,6 +22,9 @@ export function renderColumnAccordingLabel(obj, key) {
     if (obj[key].type && obj[key].type.toLowerCase() === 'coin') 
         return toGrandpaCoin(data[key]);
     if (obj[key].linkTo) {
+        if (key === 'prevBlockHash' && parseInt(data[key]) === 0) {
+            return <span className="genesis-block-prev-hash">0</span>
+        }
         return (
             <Link to={obj[key].linkTo + '/' + setUrlWithHexNotation(obj[key].hex, data[key]) + `${obj[key].type === 'address' ? '/transactions' : ''}`}>
                 {obj[key].hex ? denoteHex(data[key]) : data[key]}
