@@ -38,13 +38,11 @@ class ClientSocket {
                     data.chain.forEach(block => {
                         transactions = transactions.concat(block.transactions);
                     });
-                    console.log(data)
 
                     this.dispatch(addNewBlocks(data.chain));
                     this.dispatch(addNewPendingTransactions(data.pendingTransactions));
                     this.dispatch(addNewTransactions(transactions));
                     this.dispatch(addNewNodeInfo(data.nodeInfo));
-                    // this.dispatch(removePeer(data.nodeUrl));
                     break;
                 default:
                     break;
