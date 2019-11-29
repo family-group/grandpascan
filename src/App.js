@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { configureStore } from "./redux/store";
 import { Switch, Redirect, Route } from "react-router";
 import HomeView from './components/HomeView';
+import NotFound from './components/NotFound';
 import TransactionsViewContainer from './containers/TransactionsViewContainer';
 import BlockViewContainer from './containers/BlockDetailsViewContainer';
 import PeersViewContainer from './containers/PeersViewContainer';
@@ -12,8 +13,16 @@ import AddressTransactionsViewContainer from './containers/AddressTransactionsVi
 import BlocksViewContainer from './containers/BlocksViewContainer';
 import Header from "./components/Header";
 import Xhr from "./utils/Xhr";
-// import { apiLocal, apiProduction, appEnv } from "./configs/global";
-// action
+import ClientSocket from './socket/ClientSocket';
+
+
+
+// store
+const store = configureStore();
+window.__baseUrl = 'http://localhost:5555/';
+// window.__baseUrl = 'http://192.168.1.146:5555/'
+new ClientSocket('CLIENT_CHANNEL', store.dispatch);
+
 
 // global constants
 export const COINS = {
@@ -22,11 +31,7 @@ export const COINS = {
     grandson: 1
 };
 
-// store
-const store = configureStore();
-// export const isIos = /iP(hone|od|ad)/i.test(window.navigator.platform);
-Xhr.baseUrl = 'http://localhost:5555/'
-// Xhr.baseUrl = 'http://192.168.1.146:5555/'
+Xhr.baseUrl = window.__baseUrl;
 const App = () => {
     return (
         <Provider store={store}>
@@ -41,6 +46,7 @@ const App = () => {
                         <Route path="/transactions/pending" component={TransactionsViewContainer} exact />
                         <Route path="/blocks" component={BlocksViewContainer} exact />
                         <Route path="/node/peers" component={PeersViewContainer} exact />
+                        <Route path="/not-found/:resource" component={NotFound} exact />
                     </Switch>
             </Router>
         </Provider>
