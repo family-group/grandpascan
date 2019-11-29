@@ -4,6 +4,7 @@ import LatestOperationsContainer from '../containers/LatestOperationsContainer';
 // importing styles
 import './styles/HomeView.css';
 import HomeViewSideElementContainer from '../containers/HomeViewSideElementContainer';
+import MobileNodeInfoContainer from '../containers/MobileNodeInfoContainer';
 
 
 class HomeView extends React.Component {
@@ -43,11 +44,12 @@ class HomeView extends React.Component {
         }
     }
     render() {
-        console.log('rendering', this.state.shouldRenderSideBox)
+        console.log('rendering')
         return (
             <main className="home-main flex-row">
                 {this.state.shouldRenderSideBox && <HomeViewSideElementContainer />}
                 <div className="main-content">
+                    {!this.state.shouldRenderSideBox && <MobileNodeInfoContainer />}
                     <LatestOperationsContainer
                         type="BLOCK" 
                         title="Latest Blocks"

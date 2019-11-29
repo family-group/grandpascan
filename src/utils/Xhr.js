@@ -2,12 +2,18 @@
 class Xhr {
     static baseUrl = '';
     constructor(endpoint, options = {}) {
-        this.body = options.body ? JSON.stringify(options.body) : null;
-        this.xhr = new XMLHttpRequest();
-        this.xhr.open(options.method ? options.method.toUpperCase() : 'GET', Xhr.baseUrl + endpoint);
-        this.xhr.send(this.body)
+        this.endpoint = endpoint;
+        this.options = options;
+        this.body = this.options.body ? JSON.stringify(this.options.body) : null;
         this.result = this.result.bind(this);
         this.abort = this.abort.bind(this);
+        this.initNativeXhr = this.initNativeXhr.bind(this);
+        this.initNativeXhr();
+    }
+    initNativeXhr() {
+        this.xhr = new XMLHttpRequest();
+        this.xhr.open(this.options.method ? this.options.method.toUpperCase() : 'GET', Xhr.baseUrl + this.endpoint);
+        this.xhr.send(this.body);
     }
     abort() {
         if (this.xhr.readyState < 4 && this.xhr.readyState > 0) {

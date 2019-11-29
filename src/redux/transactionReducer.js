@@ -14,6 +14,7 @@ const initialState = {
 
 function transactionReducer(state = initialState, action = null) {
     let payload;
+    let transactions;
     switch (action.type) {
        case actions.GET_TRANSACTIONS + '_START':
            return {
@@ -81,7 +82,31 @@ function transactionReducer(state = initialState, action = null) {
                     ...state,
                     isLoading: false,
                     error: action.payload
-                }
+                };
+            case actions.ADD_NEW_TRANSACTIONS:
+                transactions = action.transactions.sort((actual, next) => Date.parse(next.dateCreated) - Date.parse(actual.dateCreated));
+                payload = payloadFormater(transactions, 'transactionDataHash');
+
+                return {
+                    ...state,
+                    confirmedTransactionIds: [...payload.ids, ...state.confirmedTransactionIds],
+                    data: {
+                        ...state.data,
+                        ...payload.data
+                    }
+                };
+            case actions.ADD_NEW_PENDING_TRANSACTION:
+                transactions = action.transactions.sort((actual, next) => Date.parse(next.dateCreated) - Date.parse(actual.dateCreated));
+                payload = payloadFormater(transactions, 'transactionDataHash');
+
+                return {
+                    ...state,
+                    pendingTransactionIds: [...payload.ids, ...state.pendingTransactionIds],
+                    data: {
+                        ...state.data,
+                        ...payload.data
+                    }
+                };
         default:
             return state;
     }

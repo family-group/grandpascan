@@ -42,7 +42,7 @@ class LatestOperations extends React.Component {
                         )
                 }
                 <ListBox
-                    data={ids.slice(0, 3).reverse()}
+                    data={ids.slice(0, 3)}
                     className={isLoading ? 'lasted-operations-list flex-axis-centered' : 'lasted-operations-list'}
                     isLoading={isLoading}
                     isEmpty={isEmpty}

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './styles/LatestSingleOperation.css';
 // importing utils
 import { dateHumanize } from '../utils/dateFunctions';
-import { toGrandpaCoin } from '../utils/granpaCoinFunctions';
+import { toGrandpaCoin, denoteHex } from '../utils/granpaCoinFunctions';
 
 class LatestSingleOperation extends React.Component {
     constructor() {
@@ -48,13 +48,13 @@ class LatestSingleOperation extends React.Component {
             return (
                 <React.Fragment>
                     <p className="block-column-content">
-                        <Link to={`address/${data.from}/transactions`}>
-                            From: {data.from}
+                        <Link to={`address/${denoteHex(data.from)}/transactions`}>
+                            From: {denoteHex(data.from)}
                         </Link>
                     </p>
                     <p className="block-column-content">
-                        <Link to={`address/${data.to}/transactions`}>
-                            To: {data.to}
+                        <Link to={`address/${denoteHex(data.to)}/transactions`}>
+                            To: {denoteHex(data.to)}
                         </Link>
                     </p>
                 </React.Fragment>
@@ -87,8 +87,8 @@ class LatestSingleOperation extends React.Component {
         if (this.props.type === 'TRANSACTION') {
             return (
                 <p className="block-index">
-                    <Link to={`/transaction/${this.props.data.transactionDataHash}`}>
-                        {this.props.data.transactionDataHash}
+                    <Link to={`/transaction/${denoteHex(this.props.data.transactionDataHash)}`}>
+                        {denoteHex(this.props.data.transactionDataHash)}
                     </Link>
                 </p>
             );

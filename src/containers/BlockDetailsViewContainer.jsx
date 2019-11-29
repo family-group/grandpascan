@@ -10,7 +10,7 @@ export default withRouter(
     connect(
         (state, ownProps) => {
             return {
-                data: ownProps.match.params.blockHash && state.blockReducer.data[ownProps.match.params.blockHash],
+                data: ownProps.match.params.blockHash && state.blockReducer.data[ownProps.match.params.blockHash.trim()],
                 isLoading: state.blockReducer.isLoading,
                 error: state.blockReducer.error
             };

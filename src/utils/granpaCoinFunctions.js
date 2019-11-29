@@ -21,15 +21,29 @@ export function renderColumnAccordingLabel(obj, key) {
         return dateHumanize(data[key]);
     if (obj[key].type && obj[key].type.toLowerCase() === 'coin') 
         return toGrandpaCoin(data[key]);
-    if (obj[key].linkTo)
+    if (obj[key].linkTo) {
         return (
-            <Link to={obj[key].linkTo + '/' + data[key] + `${obj[key].type === 'address' ? '/transactions' : ''}`}>
-                {data[key]}
+            <Link to={obj[key].linkTo + '/' + setUrlWithHexNotation(obj[key].hex, data[key]) + `${obj[key].type === 'address' ? '/transactions' : ''}`}>
+                {obj[key].hex ? denoteHex(data[key]) : data[key]}
             </Link>
         );
+    }
     if (Array.isArray(data[key]))
         return data[key].length;
     if (obj[key].capitalize)
         return data[key].toString().slice(0, 1).toUpperCase() + data[key].toString().slice(1);
     return data[key].toString();
+}
+function setUrlWithHexNotation(shouldBeHexNotation, data) {
+    if (shouldBeHexNotation)
+        return denoteHex(data);
+    return data;
+}
+export function denoteHex(hexValue) {
+    if (/^0x/.test(hexValue)) 
+        return hexValue;
+    return '0x' + hexValue;
+}
+export function cleanHexNotation(value) {
+    return value.replace(/^0x/, '');
 }

@@ -45,6 +45,7 @@ class PeersView extends React.Component {
                             (<p>{ids.length} Peers found.</p>)
                     }
                     <TableData
+                        errorMessage={this.props.isEmpty ? 'No peers connected at this moment.' : this.props.error}
                         data={ids}
                         columns={peersViewData}
                         className={isLoading || error ? 'transactions-list-container flex-axis-centered spacer-lg' : 'transactions-list-container flex-column'}

@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import TransactionDetailsView from '../components/TransactionDetailsView';
 // actions
 import { getTransactionByHash } from '../redux/transactionActions';
+import { cleanHexNotation } from '../utils/granpaCoinFunctions';
 
 
 export default withRouter(
     connect(
         (state, ownProps) => {
             return {
-                data: ownProps.match.params.transactionDataHash && state.transactionReducer.data[ownProps.match.params.transactionDataHash],
+                data: ownProps.match.params.transactionDataHash && state.transactionReducer.data[cleanHexNotation(ownProps.match.params.transactionDataHash.trim())],
                 isLoading: state.transactionReducer.isLoading,
                 error: state.transactionReducer.error
             };

@@ -9,7 +9,6 @@ const initialState = {
     error: false
 };
 
-
 function blockReducer(state = initialState, action = null) {
     let payload;
     switch (action.type) {
@@ -20,7 +19,7 @@ function blockReducer(state = initialState, action = null) {
                error: false
            };
        case actions.GET_BLOCKS + '_SUCCESS':
-           payload = payloadFormater(action.payload, 'blockHash')
+           payload = payloadFormater(action.payload, 'blockHash');
            return {
                ...state,
                isLoading: false,
@@ -33,7 +32,7 @@ function blockReducer(state = initialState, action = null) {
                 ...state,
                 isLoading: false,
                 error: action.payload
-            }
+            };
        case actions.GET_BLOCK_BY_HASH + '_START':
            return {
                ...state,
@@ -53,7 +52,17 @@ function blockReducer(state = initialState, action = null) {
                ...state,
                isLoading: false,
                error: action.payload
-           }
+           };
+        case actions.ADD_NEW_BLOCK:
+            payload = payloadFormater(action.block, 'blockHash');
+            return {
+                ...state,
+                blockIds: [...payload.ids.reverse(), ...state.blockIds],
+                data: {
+                    ...state.data,
+                    ...payload.data
+                }
+            };
         default:
             return state;
     }

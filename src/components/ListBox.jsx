@@ -26,7 +26,7 @@ class ListBox extends React.Component {
                 <Error 
                     errorMessage={this.props.error.message}
                     className="error-padding-large"
-                    errorMessageClassName="spacer"
+                    errorMessageClassName="spacer flex-column text-center"
                     retryFunction={this.props.errorFunction}
                 />
             );

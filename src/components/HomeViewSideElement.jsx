@@ -6,7 +6,6 @@ import SideBox from '../components/SideBox';
 import latestBlockIcon from '../assets/images/CUBO.svg';
 import networkIcon from '../assets/images/network.svg';
 import difficultyIcon from '../assets/images/DIFFICULTY.svg';
-// import { toGrandpaCoin } from '../utils/granpaCoinFunctions';
 import Xhr from '../utils/Xhr';
 
 class HomeViewSideElement extends React.Component {

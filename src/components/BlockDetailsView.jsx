@@ -12,7 +12,7 @@ class BlockDetailsView extends React.Component {
             index: {label: 'Index'},
             difficulty: {label: 'Difficulty'},
             prevBlockHash: {label: 'Previous Block Hash', linkTo: '/block'},
-            minedBy: {label: 'Mined by', linkTo: '/address', type: 'address'},
+            minedBy: {label: 'Mined by', linkTo: '/address', type: 'address', hex: true},
             blockDataHash: {label: 'Block data hash'},
             dateCreated: {label: 'Date created', type: 'date'},
             nonce: {label: 'Nonce'},
@@ -32,7 +32,7 @@ class BlockDetailsView extends React.Component {
         }
     }
     getBlock() {
-        this.blockDataRequest = new Xhr(`block/${this.props.match.params.blockHash}`);
+        this.blockDataRequest = new Xhr(`block/${this.props.match.params.blockHash.trim()}`);
         this.props.getBlockByHash(this.blockDataRequest);
     }
     render() {
@@ -41,7 +41,7 @@ class BlockDetailsView extends React.Component {
             <main className="full-width">
                 <div className="show-block-main-content-container">
                     <h2 className="block-hash">
-                        Block # {this.props.data ? this.props.data.blockHash : ''}
+                        Block # {this.props.data ? this.props.data.blockHash.trim() : ''}
                     </h2>
                     <DetailsBox 
                         data={this.props.data}

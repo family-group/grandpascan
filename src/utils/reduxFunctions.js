@@ -9,8 +9,8 @@ export function payloadFormater(payload, identifier, type = null) {
         });
     } else if (type && type === 'object' && typeof payload === 'object') {
         Object.keys(payload).forEach(key => {
-            data[payload[key].nodeId] = payload[key];
-            ids.push(payload[key].nodeId);
+            data[payload[key][identifier]] = payload[key];
+            ids.push(payload[key][identifier]);
         });
     } else {
         data[payload[identifier]] = payload;
@@ -21,4 +21,10 @@ export function payloadFormater(payload, identifier, type = null) {
         data,
         ids
     }
+}
+export function storeGlobalPeers(state, payload) {
+    window.__peers = payload.ids;
+}
+export function storeGlobalSinglePeer(state, payload) {
+    window.__peers = [...payload.ids, ...state.peerIds];
 }

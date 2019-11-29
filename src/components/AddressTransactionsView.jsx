@@ -7,7 +7,7 @@ import Xhr from '../utils/Xhr';
 import TableData from './TableData';
 // importing columns
 import { transactionsViewData } from '../components-data/transactionsViewData';
-import { toGrandpaCoin } from '../utils/granpaCoinFunctions';;
+import { toGrandpaCoin, cleanHexNotation } from '../utils/granpaCoinFunctions';;
 
 class AddressTransactionsView extends React.Component {
     constructor() {
@@ -30,8 +30,8 @@ class AddressTransactionsView extends React.Component {
     }
     getAllAddressTransactions() {
         const { address } = this.props.match.params;
-        this.transactionsRequest = new Xhr(`address/${address}/transactions`);
-        this.props.getAddressTransactions(this.transactionsRequest, address);
+        this.transactionsRequest = new Xhr(`address/${address.trim()}/transactions`);
+        this.props.getAddressTransactions(this.transactionsRequest, cleanHexNotation(address));
     }
     getTransactionsViewContainerRef(el) {
         if (el) this.transactionsViewContainerRef = el;
@@ -64,7 +64,7 @@ class AddressTransactionsView extends React.Component {
                 <div 
                     ref={this.getTransactionsViewContainerRef} 
                     className="address-transactions-view-container">
-                    <h2 className="ellipsis">Address: {this.props.match.params.address}</h2>
+                    <h2 className="ellipsis">Address: {this.props.match.params.address.trim()}</h2>
                     {this.renderBalance()}
                     <h3>Transactions</h3>
                     {

@@ -4,19 +4,20 @@ import './styles/BlockDetailsView.css';
 // importing utils
 import Xhr from '../utils/Xhr';
 import DetailsBox from './DetailsBox';
+import { denoteHex } from '../utils/granpaCoinFunctions';
 
 class TransactionDetailsView extends React.Component {
     constructor() {
         super();
         this.transactionRows = {
-            from: {label: 'From', linkTo: '/address', type: 'address'},
-            to: {label: 'To', linkTo: '/address', type: 'address'},
+            from: {label: 'From', linkTo: '/address', type: 'address', hex: true},
+            to: {label: 'To', linkTo: '/address', type: 'address', hex: true},
             value: {label: 'Value', type: 'coin'},
             fee: {label: 'Fee', type: 'coin'},
             dateCreated: {label: 'Date created', type: 'date'},
             data: {label: 'Data', capitalize: true},
             senderPubKey: {label: 'Sender Public key'},
-            transactionDataHash: {label: 'Transaction data hash', linkTo: '/transaction'},
+            transactionDataHash: {label: 'Transaction data hash', linkTo: '/transaction', hex: true},
             minedInBlockIndex: {label: 'Mined in block index'},
             transferSuccessful: {label: 'Transfer successful', capitalize: true}
         };
@@ -28,7 +29,7 @@ class TransactionDetailsView extends React.Component {
         }
     }
     getTransaction() {
-        this.transactionDataRequest = new Xhr(`transaction/${this.props.match.params.transactionDataHash}`);
+        this.transactionDataRequest = new Xhr(`transaction/${this.props.match.params.transactionDataHash.trim()}`);
         this.props.getTransactionByHash(this.transactionDataRequest);
     }
 
@@ -38,7 +39,7 @@ class TransactionDetailsView extends React.Component {
             <main className="full-width">
                 <div className="show-block-main-content-container">
                     <h2 className="block-hash">
-                        Transaction # {this.props.data ? this.props.data.transactionDataHash : ''}
+                        Transaction # {this.props.data ? denoteHex(this.props.data.transactionDataHash.trim()) : ''}
                     </h2>
                     <DetailsBox 
                         data={this.props.data}

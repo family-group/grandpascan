@@ -1,5 +1,5 @@
 export const peersViewData = {
     nodeId: {label: 'Node ID'},
-    peerUrl: {label: 'Peer Url'},
+    nodeUrl: {label: 'Node Url'},
     cumulativeDifficulty: {label: 'Node difficulty'}
 };

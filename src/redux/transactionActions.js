@@ -3,7 +3,8 @@ import { storeAddressBalance } from './balanceActions';
 export const actions = {
     GET_TRANSACTIONS: 'GET_TRANSACTIONS',
     GET_TRANSACTION_BY_HASH: 'GET_TRANSACTION_BY_HASH',
-    GET_ADDRESS_TRANSACTIONS: 'GET_ADDRESS_TRANSACTIONS'
+    GET_ADDRESS_TRANSACTIONS: 'GET_ADDRESS_TRANSACTIONS',
+    ADD_NEW_TRANSACTIONS: 'ADD_NEW_TRANSACTIONS'
 };
 
 export function getTransactions(request, status = 'confirmed') {
@@ -18,6 +19,18 @@ export function getTransactionByHash(request) {
         type: actions.GET_TRANSACTION_BY_HASH,
         payload: request.result()
     }
+}
+export function addNewTransactions(transactions) {
+    return {
+        type: actions.ADD_NEW_TRANSACTIONS,
+        transactions
+    };
+}
+export function addNewPendingTransactions(transactions) {
+    return {
+        type: actions.ADD_NEW_TRANSACTIONS,
+        transactions
+    };
 }
 export function getAddressTransactions(request, address) {
     if (!address) return console.error(new Error('Second argument required.'));

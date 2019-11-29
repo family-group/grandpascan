@@ -32,7 +32,9 @@ class Header extends React.Component {
                         </h1>
                     </div>
                     <div className="search-bar-container">
-                        <SearchInput />
+                        <SearchInput 
+                            
+                        />
                     </div>
                 </div>
             </header>

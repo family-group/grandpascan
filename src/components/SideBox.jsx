@@ -11,8 +11,8 @@ class SideBox extends React.Component {
     shouldComponentUpdate(prevProps) {
         if (prevProps.isLoading !== this.props.isLoading) 
             return true;
-        // if (prevProps.content !== this.props.content)
-        //     return true;
+        if (prevProps.content !== this.props.content)
+            return true;
         return false;
     }
     renderFirstRowInfo() {
