@@ -1,0 +1,7 @@
+.node-info-title, .node-info-content {
+    padding: 0.7em 1em;
+    color: var(--dark-gray);
+}
+.node-info-title {
+    min-width: 200px;
+}

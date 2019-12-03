@@ -1,0 +1,7 @@
+.main-aside {
+    width: 25%;
+    min-width: 340px;
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, .1);
+    background: #FFF;
+    font-size: 1em;
+}

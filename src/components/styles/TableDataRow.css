@@ -1,0 +1,28 @@
+.transaction-row {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    padding: 0.8em 0;
+}
+.transaction-row:first-child {
+    border-bottom: 1px solid var(--light-gray);
+}
+.transaction-td, .table-th {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: var(--columns-width);
+    padding: 0 1em;
+    white-space: nowrap;
+    text-align: center;
+    color: var(--dark-gray);
+}
+.table-th {
+    font-size: 0.90em;
+}
+.transaction-td {
+    font-size: 0.85em;
+}
+.transaction-td a {
+    font-size: 1em;
+}

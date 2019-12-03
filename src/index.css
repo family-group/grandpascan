@@ -1,13 +1,122 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+@font-face {
+    src: url('./assets/fonts/Montserrat-Bold.ttf');
+    font-family: MonBold;
+}
+@font-face {
+    src: url('./assets/fonts//Montserrat-Light.ttf');
+    font-family: MonLight;
+}
+:root {
+    --blue: #224870;
+    --light-gray: #E5E5E5;
+    --background: #FAFAFA;
+    --black: #121212;
+    --dark-gray: #848484;
+    /* --primary-gray: #6b6b6b; */
+}
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 16px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+a {
+    color: var(--blue);
+}
+#root {
+    background: var(--background);
+}
+html, #root, body {
+    height: 100%;
+}
+body {
+    background: #FAFAFA;
+    -webkit-overflow-scrolling: touch;
+    font-size: 16px;
+    font-family: MonLight;
+    width: 100%;
+    line-height: 1.5;
+}
+main {
+    width: 100%;
+    padding: 1.2em 0;
+}
+.image-container img {
+    width: 100%;
+}
+.flex-row {
+    display: flex;
+}
+.flex-wrap {
+    flex-wrap: wrap;
+}
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+.flex-r-y-centered {
+    display: flex;
+    align-items: center;
+}
+.flex-c-y-centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.flex-c-x-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.flex-axis-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.full-width {
+    width: 100%;
+}
+.main-container {
+    width: 90%;
+    margin: 0 auto;
+}
+.btn {
+    outline: transparent;
+    border: none;
+    padding: 0.5em 1em;
+    color: #FFF;
+    background: var(--blue);
+    border-radius: 4px;
+    cursor: pointer;
+}
+.flex {
+    flex: 1;
+}
+.error-padding-large {
+    padding: 3em 1em;
+}
+.text-center {
+    text-align: center;
+}
+.spacer {
+    padding: 1em 0;
+}
+.spacer-lg {
+    padding: 3em 0;
+    text-align: center;
+}
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.no-overflow {
+    overflow: hidden;
+}
+.lds-ripple {
+    margin: 0 auto;
 }

@@ -1,0 +1,24 @@
+.transactions-view-container {
+    width: 90%;
+    margin: 0 auto;
+}
+.address-transactions-view-container {
+    overflow: hidden;
+    flex: 1;
+    padding: 1em;
+}
+.transactions-view-container > h2, .transactions-view-container > p , .address-transactions-view-container > h2, .address-transactions-view-container > h3, .address-transactions-view-container > p{
+    color: var(--dark-gray);
+}
+.address-transactions-view-container > h3 {
+    padding-top: 1em;
+}
+.transactions-view-container > p, .address-transactions-view-container > p:not(.balance) {
+    text-align: right;
+    padding-bottom: 0.5em;
+    font-size: 0.9em;
+}
+.transactions-list-container {
+    background: #FFF;
+    width: 100%;
+}

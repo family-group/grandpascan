@@ -1,0 +1,9 @@
+@media (max-width: 585px) {
+    .details-box-row {
+        flex-wrap: wrap;
+    }
+    .details-box-content {
+        width: 100%;
+        text-align: center;
+    }
+}

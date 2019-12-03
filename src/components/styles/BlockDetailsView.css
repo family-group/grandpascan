@@ -1,0 +1,40 @@
+.show-block-main-content-container {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 900px;
+}
+.show-block-main-content-container .block-hash {
+    color: var(--dark-gray);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-bottom: 1em;
+}
+.block-info-container {
+    padding: 1.2em 1.5em;
+    overflow: hidden;
+}
+.details-box-row {
+    width: 100%;
+    white-space: nowrap;
+    padding: 0.5em 0;
+    color: var(--dark-gray);
+}
+.details-box-row > p {
+    font-size: 0.88em;
+}
+.details-box-row > p a {
+    font-size: 1em;
+}
+.details-box-row > p:first-child {
+    text-transform: capitalize;
+    min-width: 220px;
+}
+.details-box-row > p:nth-child(2) {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.genesis-block-prev-hash {
+    font-size: 1em;
+    color: var(--dark-gray);
+}
