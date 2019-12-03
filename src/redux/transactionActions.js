@@ -4,7 +4,8 @@ export const actions = {
     GET_TRANSACTIONS: 'GET_TRANSACTIONS',
     GET_TRANSACTION_BY_HASH: 'GET_TRANSACTION_BY_HASH',
     GET_ADDRESS_TRANSACTIONS: 'GET_ADDRESS_TRANSACTIONS',
-    ADD_NEW_TRANSACTIONS: 'ADD_NEW_TRANSACTIONS'
+    ADD_NEW_TRANSACTIONS: 'ADD_NEW_TRANSACTIONS',
+    ADD_NEW_PENDING_TRANSACTION: 'ADD_NEW_PENDING_TRANSACTION'
 };
 
 export function getTransactions(request, status = 'confirmed') {
@@ -26,10 +27,10 @@ export function addNewTransactions(transactions) {
         transactions
     };
 }
-export function addNewPendingTransactions(transactions) {
+export function addNewPendingTransactions(transaction) {
     return {
-        type: actions.ADD_NEW_TRANSACTIONS,
-        transactions
+        type: actions.ADD_NEW_PENDING_TRANSACTION,
+        transaction
     };
 }
 export function getAddressTransactions(request, address) {

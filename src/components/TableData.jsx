@@ -110,7 +110,7 @@ class TableData extends React.Component {
         );
     }
     render() {
-        console.log('Rendering ListBox')
+        console.log('Rendering TABLE DATA')
         return (
             <ShadowBox 
                 tag="table"

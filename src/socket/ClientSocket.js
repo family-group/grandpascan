@@ -8,7 +8,8 @@ class ClientSocket {
         NEW_BLOCK: 'NEW_BLOCK',
         NEW_PEER: 'NEW_PEER',
         REMOVE_PEER: 'REMOVE_PEER',
-        NEW_CHAIN: 'NEW_CHAIN'
+        NEW_CHAIN: 'NEW_CHAIN',
+        ADD_NEW_TRANSACTION: 'ADD_NEW_TRANSACTION'
     };
 
     constructor(channel, dispatch) {
@@ -21,7 +22,7 @@ class ClientSocket {
     listen() {
         this.socket.on(this.channel, data => {
             if (!data.actionType) return;
-
+        
             switch (data.actionType) {
                 case ClientSocket.CHANNELS_ACTIONS.NEW_BLOCK:
                     this.dispatch(addNewBlocks(data.block));
@@ -32,6 +33,9 @@ class ClientSocket {
                     break;
                 case ClientSocket.CHANNELS_ACTIONS.REMOVE_PEER:
                     this.dispatch(removePeer(data.nodeUrl));
+                    break;
+                case ClientSocket.CHANNELS_ACTIONS.ADD_NEW_TRANSACTION:
+                    this.dispatch(addNewPendingTransactions(data.transaction));
                     break;
                 case ClientSocket.CHANNELS_ACTIONS.NEW_CHAIN:
                     let transactions = [];

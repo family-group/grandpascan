@@ -93,19 +93,19 @@ function transactionReducer(state = initialState, action = null) {
                     data: {
                         ...state.data,
                         ...payload.data
-                    }
+                    },
+                    areConfirmedEmpty: false
                 };
             case actions.ADD_NEW_PENDING_TRANSACTION:
-                transactions = action.transactions.sort((actual, next) => Date.parse(next.dateCreated) - Date.parse(actual.dateCreated));
-                payload = payloadFormater(transactions, 'transactionDataHash');
-
+                payload = payloadFormater(action.transaction, 'transactionDataHash');
                 return {
                     ...state,
                     pendingTransactionIds: [...payload.ids, ...state.pendingTransactionIds],
                     data: {
                         ...state.data,
                         ...payload.data
-                    }
+                    },
+                    arePendingEmpty: false
                 };
         default:
             return state;
