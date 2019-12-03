@@ -21,7 +21,7 @@ class ClientSocket {
     listen() {
         this.socket.on(this.channel, data => {
             if (!data.actionType) return;
-            
+
             switch (data.actionType) {
                 case ClientSocket.CHANNELS_ACTIONS.NEW_BLOCK:
                     this.dispatch(addNewBlocks(data.block));
@@ -47,7 +47,6 @@ class ClientSocket {
                 default:
                     break;
             }
-            
         });
     }
 }
